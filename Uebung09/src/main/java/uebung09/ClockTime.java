@@ -45,8 +45,14 @@ public class ClockTime {
 			this.h = h -1;
 			}	
 		else {
+			if (m >= 60) {
+				this.m = m - 60;
+				this.h = h + 1;
+			}
+			else {
 			this.m = m;
-				}		
+				}
+		}
 			}	
 		s = 0;
 			
@@ -68,7 +74,13 @@ public class ClockTime {
 			this.h = h - 1;
 			}	
 		else {
+			if (m >= 60) {
+				this.m = m - 60;
+				this.h = h + 1;
+			}
+			else {
 			this.m = m;
+				}
 				}		
 			}	
 		if (s < 0) {
@@ -76,12 +88,20 @@ public class ClockTime {
 			this.m = m - 1;
 		}
 		else {
+			if (s >= 60) {
+				this.s = s - 60;
+				this.m = m + 1;
+			}
+			else {
 			this.s = s;
+		}
 		}
 	}
 
 	public ClockTime(ClockTime ct) {
+		
 	}
+	
 
 
 	public boolean same(ClockTime secondCt) {
@@ -127,12 +147,26 @@ public class ClockTime {
 	}
 
 	public int getMinutes() {
+		
 		if (m < 0) {
 			this.m = 60 + m;
 		}
 		else {
 			if (m >= 60) {
 				this.m = m - 60;
+			}
+			else {
+				if (s < 0) {
+					this.s = 60 + s;
+					this.m = m - 1;
+				}
+				else {
+					if (s >= 60) {
+						this.s = s - 60;
+						this.m = m + 1;
+					}
+					
+				}
 			}
 		}
 		return m;
@@ -146,6 +180,29 @@ public class ClockTime {
 		else {
 			if (h >= 24) {
 				this.h = h - 24;
+			}
+			else {
+				if (m < 0) {
+					this.m = 60 + m;
+				}
+				else {
+					if (m >= 60) {
+						this.m = m - 60;
+					}
+					else {
+						if (s < 0) {
+							this.s = 60 + s;
+							this.m = m - 1;
+						}
+						else {
+							if (s >= 60) {
+								this.s = s - 60;
+								this.m = m + 1;
+							}
+							
+						}
+					}
+				}
 			}
 		}
 		return h;
