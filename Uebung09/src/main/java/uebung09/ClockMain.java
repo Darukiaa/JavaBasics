@@ -7,11 +7,11 @@ public class ClockMain {
 		System.out.println("Expect: 00:00:00");
 		new ClockTime().output();
 		System.out.println("-------------");
-		System.out.println("Expect: 10:00:00");
-		new ClockTime(10).output();
+		System.out.println("Expect: 02:00:00");
+		new ClockTime(26).output();
 		System.out.println("-------------");
-		System.out.println("Expect: 23:00:00");
-		new ClockTime(-1).output();
+		System.out.println("Expect: 14:00:00");
+		new ClockTime(-10).output();
 		System.out.println("-------------");
 		System.out.println("Expect: 10:05:00");
 		new ClockTime(10, 5).output();
@@ -28,11 +28,11 @@ public class ClockMain {
 		System.out.println("-------------");
 		ClockTime oldCt = new ClockTime(10, 5, -45);
 		ClockTime newCt = new ClockTime(oldCt);
+		System.out.println("Expect: 10:04:15");
 		oldCt.output();
-		System.out.println("Expect: 10:04:15");
 		System.out.println("-------------");
-		newCt.output();
 		System.out.println("Expect: 10:04:15");
+		newCt.output();
 		// same method
 		System.out.println("-------------");
 		ClockTime firstCt = new ClockTime(10, 5, -45);
