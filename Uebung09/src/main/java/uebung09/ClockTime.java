@@ -102,92 +102,79 @@ public class ClockTime {
 	}
 
 	public void add(int x) {
-		int i = 0;
-		if (x >= 60) {
-			while (x >= 60) {
-				i = i + 1;
-				x = x - 60;
-			}
-			m = m + i;
+	
+		int sec = 0;
+		int min = 0;
+		int hour = 0;
+		
+		if (x > 3600 || x < -3600) {
+			hour = x / 3600;
+			min = x % 3600 / 60;
+			sec = x % 3600 % 60;
 		}
+		else {
+			sec = x % 60;
+			min = x / 60;
+		}
+		if (x > 0) {
+			if ((s+sec)>=60) {
+				m+=1;
+				s=s+sec-60;
+			}
+			else {
+				s=s+sec;
+			}
+			if ((m+min)>=60) {
+				h+=1;
+				m=m+min-60;
+			}
+			else {
+				m=m+min;
+			}
+		}
+		else {
+			if ((s+sec)<0) {
+				m-=1;
+				s = s + sec + 60;
+			}
+			else {
+				s = s + sec;
+			}
+			if ((m + min) < 0) {
+				if (h - 1 < 0) {
+					h =+ 24;
+				}
+				h -= 1;
+				m = m + min + 60;
+			}
+			else {
+				m = m + min;
+			}
+		}
+		h = (h + hour) % 24;
 	}
 
 	public int diff(ClockTime secondCt) {
-		int hs;
-		int ms;
-		int dif;
-
-		hs = h * 60 * 60;
-		ms = m * 60;
-		dif = hs + ms + s;
-
-		return dif;
-
+		
+		int result = (secondCt.getHours() - getHours()) * 3600 + (secondCt.getMinutes() - getMinutes()) * 60 + (secondCt.getSeconds() - getSeconds());
+		if (result < 0) {
+			result += 24 * 3600;
+		}
+		return result;
 	}
 
 	public int getSeconds() {
-		if (s < 0) {
-			s = 60 + s;
-		} else {
-			if (s >= 60) {
-				s = s - 60;
-			}
-
-		}
+	
 		return s;
 	}
 
 	public int getMinutes() {
 
-		if (m < 0) {
-			m = 60 + m;
-		} else {
-			if (m >= 60) {
-				m = m - 60;
-			} else {
-				if (s < 0) {
-					s = 60 + s;
-					m = m - 1;
-				} else {
-					if (s >= 60) {
-						s = s - 60;
-						m = m + 1;
-					}
-
-				}
-			}
-		}
 		return m;
-
 	}
 
 	public int getHours() {
-		if (h < 0) {
-			h = 24 + h;
-		} else {
-			if (h >= 24) {
-				h = h - 24;
-			} else {
-				if (m < 0) {
-					m = 60 + m;
-				} else {
-					if (m >= 60) {
-						m = m - 60;
-					} else {
-						if (s < 0) {
-							s = 60 + s;
-							m = m - 1;
-						} else {
-							if (s >= 60) {
-								s = s - 60;
-								m = m + 1;
-							}
-
-						}
-					}
-				}
-			}
-		}
+	
 		return h;
 	}
 
