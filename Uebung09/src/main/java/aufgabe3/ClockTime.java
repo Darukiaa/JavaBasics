@@ -1,4 +1,4 @@
-package uebung09;
+package aufgabe3;
 
 public class ClockTime {
 
