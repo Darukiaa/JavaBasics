@@ -179,7 +179,7 @@ public class ClockTime {
 	}
 
 	public void output() {
-		System.out.println(String.format("%s:%s:%s", h, m, s));
+		System.out.println(String.format("%02d:%02d:%02d", h, m, s));
 	}
 
 }
