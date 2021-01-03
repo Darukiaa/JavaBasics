@@ -99,13 +99,20 @@ public class ClockTime {
 	}
 
 	public ClockTime(ClockTime ct) {
-		
+		this.h = ct.h;
+		this.m = ct.m;
+		this.s = ct.s;
 	}
 	
 
 
 	public boolean same(ClockTime secondCt) {
-		return false;
+		if (this.getHours() == secondCt.getHours() && this.getMinutes() == secondCt.getMinutes() && this.getSeconds() == secondCt.getSeconds()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public void add(int x) {
@@ -119,17 +126,16 @@ public class ClockTime {
 		}
 	}
 				
-	public int diff(ClockTime secondCt) {
+	public int diff(ClockTime secondCt){
 		int hs;
 		int ms;
-		int diff;
-
+		int dif;
+		
 		hs = (h * 60) * 60;
 		ms = m * 60;
-		diff = hs + ms + s;
-		
-		
-		return diff;
+		dif = hs + ms + s;
+	
+		return dif;
 		
 	}
 
